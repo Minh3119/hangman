@@ -7,6 +7,8 @@ import random
 init(autoreset=True)
 STATUS = ("correct","wrong","duplicated","win")
 QUIT = {"quit","esc","exit","forfeit"}
+DIFFICULTY = {1:7, 2:5, 3:3}   # mode 1 = 7 hearts , mode 2 = 5 hearts
+
 
 class Game():
     def __init__(self, hearts:int) -> None:
@@ -81,9 +83,12 @@ class Game():
 def main():
     print(f"{Fore.CYAN}>>> Launching the game >>>")
     time.sleep(2)
-    game = Game(5)
+    
+    hearts = specify_difficulty_as_hearts()
+    game = Game(hearts)
+
     text = Fore.YELLOW
-    update_output(game, text=text+"Welcome to the game I created by copying the code on the internet H-A-N-G-M-A-N v0.69")
+    update_output(game, text=text+"Welcome to H-A-N-G-M-A-N v0.69")
     while game.playerHearts > 0:
         text = Fore.YELLOW
         player_input = str(input()).strip().lower()
@@ -114,6 +119,33 @@ def main():
     os.system("cls")
     print(f'{Fore.YELLOW} Out of hearts...\nYou lost. The hidden word was "{game.hiddenWord}"')
     return
+
+
+def specify_difficulty_as_hearts():
+    os.system("cls")
+    print(f"""
+    Please choose a difficulty by typing the number:
+    1. Easy (7 hearts) : suitable for beginners
+    2. Medium (5 hearts) : still ez tho
+    3. Hard (3 hearts) : experts only        
+    """)
+    print("Your choice:")
+    while True:
+        try:
+            inp = int(input())
+        except KeyboardInterrupt:
+            exit()
+        except:
+            print(f"\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
+            continue
+        
+        if inp not in (1,2,3):
+            print(f"\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
+            continue
+
+        break
+    
+    return DIFFICULTY[inp]
 
 
 def update_output(game:Game, text:None):
