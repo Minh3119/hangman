@@ -65,8 +65,6 @@ class Game():
                 ss.write(char)
             else:
                 ss.write("_")
-        
-        ss.write(f"\n\n{Fore.LIGHTBLUE_EX}Reveal this word by guessing one letter at a time.")
         return ss.getvalue()
     
     def get_hearts_output_display(self):
@@ -76,6 +74,16 @@ class Game():
             ss.write(f"{Fore.LIGHTRED_EX}♡")
 
         ss.write(f"{Fore.LIGHTRED_EX} ({self.playerHearts})")
+        return ss.getvalue()
+    
+    def get_guessed_letters_output(self):
+        ss = io.StringIO()
+        ss.write(f"Guessed letters: ")
+        if not self.guessed:
+            ss.write("None")
+        else:
+            for char in self.guessed:
+                ss.write(char+" ")
         return ss.getvalue()
     
 
@@ -163,9 +171,11 @@ def update_output(game:Game, text:None):
     os.system("cls")
     print(game.get_hearts_output_display())
     print(game.get_word_output_display())
+    print(game.get_guessed_letters_output())
+    print()
     if text:
         print(">>> "+text+f" {Fore.WHITE}<<<\n")
-    print(f"{Fore.GREEN}Type your guess here:")
+    print(f"{Fore.LIGHTBLUE_EX}Reveal this word by guessing one letter at a time.\n{Fore.GREEN}Type your guess here:")
 
 
 if __name__ == "__main__":
