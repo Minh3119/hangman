@@ -1,0 +1,5 @@
+# Python Development Environment
+venv/
+
+# Visual Studio Code
+.vscode/
