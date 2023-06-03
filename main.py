@@ -82,7 +82,7 @@ class Game():
 
 def main():
     print(f"{Fore.CYAN}>>> Launching the game >>>")
-    time.sleep(2)
+    time.sleep(1)
     
     hearts = specify_difficulty_as_hearts()
     game = Game(hearts)
@@ -131,11 +131,22 @@ def specify_difficulty_as_hearts():
     """)
     print("Your choice:")
     while True:
-        try:
-            inp = int(input())
+        inp = input()
+        try:            
+            inp = int(inp)
         except KeyboardInterrupt:
             exit()
         except:
+            try:
+                inp = str(inp).strip().lower()
+            except:
+                pass
+            else:
+                if inp in QUIT:
+                    os.system("cls")
+                    print(" You quitted the game.")
+                    exit()
+
             print(f"\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
             continue
         
