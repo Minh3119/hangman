@@ -79,17 +79,16 @@ class Game():
 
         ss.write(f"{Fore.LIGHTRED_EX} ({self.playerHearts})")
         return ss.getvalue()
-    
+
     def get_guessed_letters_output(self):
         ss = io.StringIO()
-        ss.write(f"Guessed letters: ")
+        ss.write("Guessed letters: ")
         if not self.guessed:
             ss.write("None")
         else:
             for char in self.guessed:
                 ss.write(char+" ")
         return ss.getvalue()
-    
 
 
 def main():
@@ -135,7 +134,7 @@ def main():
 
 def specify_difficulty_as_hearts():
     clear_console()
-    print(f"""
+    print("""
     Please choose a difficulty by typing the number:
     1. Easy (7 hearts)   : suitable for beginners
     2. Medium (5 hearts) : still ez tho
@@ -159,11 +158,11 @@ def specify_difficulty_as_hearts():
                     print(" You quitted the game.")
                     exit()
 
-            print(f"\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
+            print("\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
             continue
 
         if inp not in (1, 2, 3):
-            print(f"\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
+            print("\nPlease choose it by typing number only (1 or 2 or 3)\nYour choice:")
             continue
 
         break
